@@ -1,0 +1,557 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Shristi Abhushan</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/shrishti.jpg' %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classy-nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    
+    <!-- Compiled and minified JavaScript -->
+            
+</head>
+<style>
+    .logout{
+        color:white ;
+        margin-right:20px;
+
+    }
+</style>
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/shrishti.jpg' %}" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Shristisarvagya@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: Shristisarvagya@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+91 8720890108"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 8720890108</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                <!-- Language Dropdown -->
+                                {% if user.is_authenticated %}
+                                <div class="language-dropdown">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle mr-30 logout" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.first_name|capfirst}}</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                           
+                                            <a class="dropdown-item" href="{% url 'orderplaced' %}">Orders</a>
+                                            <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
+                                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="logout"> Hello , {{user.first_name}} </div><br> -->
+                                <div class="logout">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Logout</span></a>
+                                </div>
+                                <div class="logout">
+                                    <a href="{% url 'cart' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Cart</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                </div>
+                                <!--signup-->
+                                <div class="signup">
+                                    <a href="{% url 'signup' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Signup</span></a>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="{% static 'img/core-img/l.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                   
+                                    
+                                    </li>
+                                    <li><a href="{% url 'shop' %}">Our Collection</a></li>
+                                    
+                                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                
+                                <div id="searchIcon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                                
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    <div class="search-form">
+                        <form id="search-form"  autocomplete="off">
+                            {% csrf_token %}
+                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <div id ="results-box" class="results-card notvisible">test</div>
+                            <button type="submit" class="d-none"></button>
+                        </form>
+                        
+                        <!-- Close Icon -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-post-slides owl-carousel">
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/bride3.jpeg' %});"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                            <div class="hero-slides-content text-center">
+                                <h2>JWELLERY - A WOMAN'S CROWNING GLORY</h2>
+                                <p>Shrishti Abhushan brings you the exhilarating opportunity to shop online for women's jewellery in India. Taking pride in its vast heritage and depicting Indian symbolism in its designs, Shristi Abhushan brings you a variety of modern and antique jewellery to choose from.</p>
+                                <div class="welcome-btn-group">
+                                    <a href="{% url 'signup' %}" class="btn alazea-btn mr-30">GET STARTED</a>
+                                    <a href="{% url 'contact' %}" class="btn alazea-btn active">CONTACT US</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/bride.jpg' %});"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                            <div class="hero-slides-content text-center">
+                                <h2>JWELLERY - A WOMAN'S CROWNING GLORY</h2>
+                                <p>Shrishti Abhushan brings you the exhilarating opportunity to shop online for women's jewellery in India. Taking pride in its vast heritage and depicting Indian symbolism in its designs, Shristi Abhushan brings you a variety of modern and antique jewellery to choose from.</p>
+                                <div class="welcome-btn-group">
+                                    <a href="{% url 'signup' %}" class="btn alazea-btn mr-30">GET STARTED</a>
+                                    <a href="{% url 'contact' %}" class="btn alazea-btn active">CONTACT US</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Service Area Start ##### -->
+    <section class="our-services-area bg-gray section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>OFFERS</h2>
+                        <p>We provide the perfect service for you.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <section class="hero-area">
+                    <div class="hero-post-slides owl-carousel">
+            
+                        <!-- Single Hero Post -->
+                        <div class="single-hero-post bg-overlay" style="height: 500px;">
+                            <!-- Post Image -->
+                            <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/5off.jpg' %});"></div>
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Single Hero Post -->
+                        <div class="single-hero-post bg-overlay" style="height: 500px;">
+                            <!-- Post Image -->
+                            <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/10off.jpg' %});"></div>
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Single Hero Post -->
+                        <div class="single-hero-post bg-overlay" style="height: 500px;">
+                            <!-- Post Image -->
+                            <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/20off.jpg' %});"></div>
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Hero Post -->
+                        <div class="single-hero-post bg-overlay" style="height: 500px;">
+                            <!-- Post Image -->
+                            <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/30off.jpeg' %});"></div>
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Hero Post -->
+                        <div class="single-hero-post bg-overlay" style="height: 500px;">
+                            <!-- Post Image -->
+                            <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/40off.jpeg' %});"></div>
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Hero Post -->
+                        <div class="single-hero-post bg-overlay" style="height: 500px;">
+                            <!-- Post Image -->
+                            <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/50off.jpeg' %});"></div>
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    
+                                </div>
+                            </div>
+                        </div>
+            
+                    </div>
+                </section>
+              
+            </div>      
+                <!-- Full-width images with number and caption text -->
+                
+    <!-- ##### Service Area End ##### -->
+
+    <!-- ##### About Area Start ##### -->
+        <!-- ##### About Area End ##### -->
+
+    <!-- ##### Portfolio Area Start ##### -->
+    <section class="alazea-portfolio-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>OUR PORTFOLIO</h2>
+                        <p>All Womens are Beautiful,we are just adding a little Beauty.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+            <div class="row alazea-portfolio">
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item design home-design wow fadeInUp" data-wow-delay="100ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p1.jpg' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{%  url 'shop-details' 1 %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 1">
+                          
+                            <div class="port-hover-text">
+                                <h3>Fancy PartyWear</h3>
+                                <h5>Earring</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden wow fadeInUp" data-wow-delay="200ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p2.jpg' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{% static 'img/bg-img/p2.jpg' %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 2">
+                            <div class="port-hover-text">
+                                <h3>Black Bead</h3>
+                                <h5>Mangalsutra</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden design wow fadeInUp" data-wow-delay="300ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p3.png' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{% static 'img/bg-img/p3.png' %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 3">
+                            <div class="port-hover-text">
+                                <h3>Stone Jhumka</h3>
+                                
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden office-design wow fadeInUp" data-wow-delay="400ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p4.jpg' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{% static 'img/bg-img/p4.jpg' %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 4">
+                            <div class="port-hover-text">
+                                <h3>Neckpeice</h3>
+                               
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item design office-design wow fadeInUp" data-wow-delay="100ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p5.jpeg' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{% static 'img/bg-img/p5.jpeg' %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 5">
+                            <div class="port-hover-text">
+                                <h3>stud earings</h3>
+                                
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-sm-6 col-lg-3 single_portfolio_item garden wow fadeInUp" data-wow-delay="200ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p7.png' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{% static 'img/bg-img/p7.png' %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 6">
+                            <div class="port-hover-text">
+                                <h3>Black metal</h3>
+                                <h5>Earring</h5> 
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Single Portfolio Area -->
+                <div class="col-12 col-lg-6 single_portfolio_item home-design wow fadeInUp" data-wow-delay="300ms">
+                    <!-- Portfolio Thumbnail -->
+                    <div class="portfolio-thumbnail bg-img" style="background-image: url({% static 'img/bg-img/p8.jpg' %});"></div>
+                    <!-- Portfolio Hover Text -->
+                    <div class="portfolio-hover-overlay">
+                        <a href="{% static 'img/bg-img/p8.jpg' %}" class="portfolio-img d-flex align-items-center justify-content-center" title="Portfolio 7">
+                            <div class="port-hover-text">
+                                <h3>Fancy Payal</h3>
+                                
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Portfolio Area End ##### -->
+
+    
+    <!-- ##### Testimonial Area End ##### -->
+
+    <!-- ##### Product Area End ##### -->
+
+    <!-- ##### Blog Area Start ##### -->
+    <!-- ##### Blog Area End ##### -->
+
+    
+    <!-- ##### Subscribe Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                
+
+                <div class="col-6 col-lg-6">
+                    <!-- Google Maps -->
+                   <!---- <div class="map-area mb-100">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22236.40558254599!2d-118.25292394686001!3d34.057682914027104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z4Kay4Ka4IOCmj-CmnuCnjeCmnOCnh-CmsuCnh-CmuCwg4KaV4KeN4Kav4Ka-4Kay4Ka_4Kar4KeL4Kaw4KeN4Kao4Ka_4Kav4Ka84Ka-LCDgpq7gpr7gprDgp43gppXgpr_gpqgg4Kav4KeB4KaV4KeN4Kak4Kaw4Ka-4Ka34KeN4Kaf4KeN4Kaw!5e0!3m2!1sbn!2sbd!4v1532328708137" allowfullscreen></iframe>
+                    </div> -->
+                    
+                    <div>   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.278895240623!2d75.86033531496224!3d22.71787298510817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd1be96b8157%3A0x18582dceab060fb6!2sShri%20sarvagya%20sales!5e0!3m2!1sen!2sin!4v1626278063177!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ##### Contact Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <!-- <footer class="footer-area bg-img" style="background-image: url({% static 'img/bg-img/bg.jpg' %});"> -->
+    <footer class="footer-area bg-img" style="background-color: #d1a00c">    <!-- Main Footer Area -->
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            
+                            <div class="social-info">
+                                
+                                <a href="https://www.instagram.com/shrishti_aabhushan._/?utm_medium=copy_link"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://wa.me/918720890108"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>QUICK LINK</h5>
+                            </div>
+                            <nav class="widget-nav">
+                                <ul>
+                                    
+                                   
+                                    <li><a href="{% url 'policy' %}">Payment</a></li>
+
+                                    <li><a href="{% url 'policy' %}">Return</a></li>
+                                    <li><a href="{% url 'policy' %}">Shipping</a></li>
+                                
+                                    <li><a href="{% url 'orderplaced' %}">Orders</a></li>
+                                
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>CONTACT</h5>
+                            </div>
+
+                            <div class="contact-information">
+                            <p><span>Address:</span> 19, Jagjivan Ram Mohalla, nai bagad, Ranipura, Indore, Madhya Pradesh 452007</p>
+                            <p><span>Other Branches at:</span>Bhopal and Rajkot</p>
+                            <p><span>Phone:</span> +91 8720890108</p>
+                            <p><span>Other Contact:</span> +91 9009292721</p>
+                            <p><span>Email:</span> Shrishtisarvagya@gmail.com</p>
+                            <p><span>Open hours:</span> Mon - Sat: 10.30 AM to 8.30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Area -->
+        
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   
+     
+</body>
+
+</html>

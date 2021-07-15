@@ -1,0 +1,1 @@
+web: gunicorn nurserynation.wsgi --log-file -

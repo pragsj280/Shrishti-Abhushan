@@ -1,0 +1,352 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Shristi Abhushan</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/shrishti.jpg' %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classy-nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/elegant-icon.css' %}">
+    
+
+</head>
+<style>
+    .logout{
+        color:white ;
+        margin-right:20px;
+
+    }
+</style>
+
+
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/shrishti.jpg' %}" alt="">
+        </div>
+    </div>
+    
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Shristisarvagya@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: Shristisarvagya@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+91 8720890108"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 8720890108</span></a>
+                            </div>
+                            
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                <!-- Language Dropdown -->
+                                
+                                <!-- Login -->
+                                {% if user.is_authenticated %}
+                                <div class="language-dropdown">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle mr-30 logout" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.first_name|capfirst}}</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                           
+                                            <a class="dropdown-item" href="{% url 'orderplaced' %}">Orders</a>
+                                            <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
+                                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="logout"> Hello , {{user.first_name}} </div><br> -->
+                                <div class="logout">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Logout</span></a>
+                                </div>
+                                <div class="logout">
+                                    <a href="{% url 'cart' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Cart</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                </div>
+                                <!--signup-->
+                                <div class="signup">
+                                    <a href="{% url 'signup' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Signup</span></a>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <div class="alert alert-success collapse alert-fixed" id = "myAlert">
+                        <button type="button" id="linkClose" class="close">&times;</button>
+                        <center><strong>Success!</strong> Item added successfully :D</center>
+                    </div>
+            
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+            <!-- <img src="{% static 'img/core-img/leaf.png' %}" alt=""> -->
+                        <a href="/" class="nav-brand"><img src="{% static 'img/core-img/l.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    
+                                    <li><a href="#">Our Collection</a></li>
+                                    
+                                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                
+
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+    
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/th.jpg' %});">
+         <h2>Our Collection</h2> 
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'shop' %}" >Our Collection</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Shop Area Start ##### -->
+    <section class="shop-page section-padding-0-100">
+        
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-12">
+                    <div class="alazea-portfolio-filter">
+                        <div class="portfolio-filter">
+                            {% for i,j in sub_cat.items %}
+                            {% for k in j %}
+                            <a href="{% url 'sub_category' i k.id %}" class="btn active" data-filter="*">{{k.subcat_name}}</a>
+                            {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <!-- Shop Sorting Data -->
+                <div class="col-12">
+                    <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
+                        <!-- Search by Terms -->
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <!-- All Products Area -->
+                <div class="col-12 col-md-6 col-lg-12">
+                    <div class="shop-products-area">
+                        <div class="row">
+                            {% for i in products %}
+                            <div class="col-md-4">
+                                <div class="product py-4 "> 
+                                    <div class="text-center" > <img style="height: 200px;" class="img-thumbnail" src="{{i.img.url}}" alt="">  </div>
+                                    <div class="about text-center "  >
+                                       
+                                        <h5 class=" text-dark">{{i.name}} </h5>
+                                        
+                                    
+                                    <h6>Rs.{{ i.price }}</h6>
+                                    <div class="center">
+                                        <div class="buttons text-center">
+                                            <div class="cart"></div> 
+                                            <button class="btn btn-success cart-button px-5 itee" pid={{i.id}}>Add to cart </button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}  
+
+                            
+                            
+                            
+
+                            
+                            
+
+                            
+
+                            
+                            
+                            
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ##### Shop Area End ##### -->
+
+   <!-- ##### Footer Area Start ##### -->
+    <!-- <footer class="footer-area bg-img" style="background-image: url({% static 'img/bg-img/bg.jpg' %});"> -->
+        <footer class="footer-area bg-img" style="background-color: #d1a00c">    <!-- Main Footer Area -->
+            <div class="main-footer-area">
+                <div class="container">
+                    <div class="row">
+    
+                        <!-- Single Footer Widget -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-footer-widget">
+                                
+                                <div class="social-info">
+                                    
+                                    <a href="https://www.instagram.com/shrishti_aabhushan._/?utm_medium=copy_link"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="https://wa.me/918720890108"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Single Footer Widget -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-footer-widget">
+                                <div class="widget-title">
+                                    <h5>QUICK LINK</h5>
+                                </div>
+                                <nav class="widget-nav">
+                                    <ul>
+                                        
+                                       
+                                        <li><a href="{% url 'policy' %}">Payment</a></li>
+    
+                                        <li><a href="{% url 'policy' %}">Return</a></li>
+                                        <li><a href="{% url 'policy' %}">Shipping</a></li>
+                                    
+                                        <li><a href="{% url 'orderplaced' %}">Orders</a></li>
+                                    
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+    
+                        
+    
+                        <!-- Single Footer Widget -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-footer-widget">
+                                <div class="widget-title">
+                                    <h5>CONTACT</h5>
+                                </div>
+    
+                                <div class="contact-information">
+                                <p><span>Address:</span> 19, Jagjivan Ram Mohalla, nai bagad, Ranipura, Indore, Madhya Pradesh 452007</p>
+                                <p><span>Other Branches at:</span>Bhopal and Rajkot</p>
+                                <p><span>Phone:</span> +91 8720890108</p>
+                                <p><span>Other Contact:</span> +91 9009292721</p>
+                                <p><span>Email:</span> Shrishtisarvagya@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Sat: 10.30 AM to 8.30 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Footer Bottom Area -->
+            
+        </footer>
+        <!-- ##### Footer Area End ##### -->
+    
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    
+    <!-- Popper js -->
+    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'js/mycart.js' %}"></script>
+    <!-- jQuery-2.2.4 js -->
+       
+    
+</body>
+
+</html>

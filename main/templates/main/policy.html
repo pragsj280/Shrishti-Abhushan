@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Shristi Abhushan</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{%static 'img/core-img/shrishti.jpg' %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/classy-nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/elegant-icon.css' %}">
+
+
+</head>
+<style>
+    .logout{
+        color:white ;
+        margin-right:20px;
+
+    }
+</style>
+
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{%static 'img/core-img/shrishti.jpg' %}" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- ***** Top Header Area ***** -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Shristisarvagya@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: Shristisarvagya@gmail.com</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+91 8720890108"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 8720890108</span></a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                <!-- Language Dropdown -->
+                                <!-- Login -->
+                                {% if user.is_authenticated %}
+                                <div class="language-dropdown">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle mr-30 logout" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.first_name|capfirst}}</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                           
+                                            <a class="dropdown-item" href="{% url 'orderplaced' %}">Orders</a>
+                                            <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
+                                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="logout"> Hello , {{user.first_name}} </div><br> -->
+                                <div class="logout">
+                                    <a href="{% url 'logout' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Logout</span></a>
+                                </div>
+                                <div class="logout">
+                                    <a href="{% url 'cart' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Cart</span></a>
+                                </div>
+                                {% else %}
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="{% url 'login' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                </div>
+                                <!--signup-->
+                                <div class="signup">
+                                    <a href="{% url 'signup' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Signup</span></a>
+                                </div>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ***** Navbar Area ***** -->
+        <div class="alazea-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
+
+                        <!-- Nav Brand -->
+                        <a href="/" class="nav-brand"><img src="{%static 'img/core-img/l.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Navbar Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    
+                                    <li><a href="{% url 'shop' %}">Our Collection</a></li>
+                                    
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                
+
+                            </div>
+                            <!-- Navbar End -->
+                        </div>
+                    </nav>
+
+                    <!-- Search Form -->
+                   
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/th.jpg' %});">
+            <h2>Terms and Condition</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Terms and Condition</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+    <div class="container" >
+        <p>
+      <h2>Privacy Policy</h2>
+<h2>Please read the following terms and conditions of use agreement carefully.</h2>
+The following demonstrates terms and conditions of use (here-in-after referred to as an "Agreement"), applicable to your use of srishti.jewl.com (hereinafter referred to as "web site"), which promotes business between suppliers and buyers nationally. It is an agreement between you as the user(s) of the web site (the "User(s)") and Sarvagya Sales. 
+  
+Before you subscribe to and/or begin participating in or using web site, Sarvagya Sales believes that user(s) have fully read, understood and accept the agreement. 
+  
+If you do not agree to or wish to be bound by this agreement, you may not access or otherwise use the web site.
+    
+  <h4>PRIVACY POLICY</h4> 
+  Personal information supplied by user(s) during the use of website is governed by our privacy policy.  
+  
+  
+  Conditions:
+  
+  1. Payment is allowed only through online mode (Debit Card/ Credit Card/ UPIs/ online payment gateways)
+  
+  2. Free shipping over bill amount of Rupees 999 (shipping charges Rupees 99)
+   
+  3.  Promotional offer will be valid on specific products and specified bill amount.
+  
+  4.  Jewellery items cannot be exchanged unless it is damaged or defective. Unboxing video is compulsory in case of damaged or defective product.
+  
+  5. Offer valid only for non-precious jewellery.
+  
+  6. No used jewellery can be exchanged for cash or any other jewellery.
+  
+  7. Promotional offer is only valid for the time range of offer validation.
+  
+  8. Diacount of 10% of the bill amount will be given per customer per transaction if the bill amount exceeds Rupees 1000.
+  
+  7. Maximum Discount is up to Rs 500.
+  
+  8. No cash alternatives will be offered to the customer.
+  
+  9.  Once the customer gets the discount, he/she will not get the amount of discount refunded at the time of return. 
+  
+  10. Refund will be credited at Original Source of payment.
+  
+  11. Promotional offer can only be availed during the offer time and date.
+  
+  12.  srishti.jewels.com reserves the right to change the terms and conditions of this offer or completely withdraw it without any prior notice.
+  
+  13. srishti.jewels.com reserves the right to terminate the user's account and cancel all outstanding orders if it is found that the user is trying to misuse the promotions by any means.
+  
+  <h4>Return policy</h4>
+  
+  Returns / Replacement and / or Refund Policy gives buyers an option to return or replace the products purchased and / or refund is offered.
+  
+  The products eligible for return / replacement/ refund if specifically provided in the product details page. For all products, the policy on the product page shall prevail over below general return policy. Please refer the return policy mentioned on the product page.
+  
+  Products are returnable within the specified return / replacement period of 7 days if found to be damaged or defective except for those products that are explicitly identified as not returnable.
+  
+  
+  
+  
+  
+  
+  To be provided below the product design
+  
+  7 Day Warranty
+  Every piece of jewelry sold at srishtijewels.com is covered under our 7 Day Replacement Guarantee. Notify us about problems, fitting issues, damages or defects within 7 days from the date of delivery, and we will either refund your money or send a replacement product to you. T&C Apply
+  </p>
+</div>
+ <!-- ##### Footer Area Start ##### -->
+    <!-- <footer class="footer-area bg-img" style="background-image: url({% static 'img/bg-img/bg.jpg' %});"> -->
+        <footer class="footer-area bg-img" style="background-color: #d1a00c">    <!-- Main Footer Area -->
+            <div class="main-footer-area">
+                <div class="container">
+                    <div class="row">
+    
+                        <!-- Single Footer Widget -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-footer-widget">
+                                
+                                <div class="social-info">
+                                    
+                                    <a href="https://www.instagram.com/shrishti_aabhushan._/?utm_medium=copy_link"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="https://wa.me/918720890108"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Single Footer Widget -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-footer-widget">
+                                <div class="widget-title">
+                                    <h5>QUICK LINK</h5>
+                                </div>
+                                <nav class="widget-nav">
+                                    <ul>
+                                        
+                                       
+                                        <li><a href="#">Payment</a></li>
+    
+                                        <li><a href="#">Return</a></li>
+                                        <li><a href="#">Shipping</a></li>
+                                    
+                                        <li><a href="{% url 'orderplaced' %}">Orders</a></li>
+                                    
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+    
+                        
+    
+                        <!-- Single Footer Widget -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-footer-widget">
+                                <div class="widget-title">
+                                    <h5>CONTACT</h5>
+                                </div>
+    
+                                <div class="contact-information">
+                                <p><span>Address:</span> 19, Jagjivan Ram Mohalla, nai bagad, Ranipura, Indore, Madhya Pradesh 452007</p>
+                                <p><span>Other Branches at:</span>Bhopal and Rajkot</p>
+                                <p><span>Phone:</span> +91 8720890108</p>
+                                <p><span>Other Contact:</span> +91 9009292721</p>
+                                <p><span>Email:</span> Shrishtisarvagya@gmail.com</p>
+                                <p><span>Open hours:</span> Mon - Sat: 10.30 AM to 8.30 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Footer Bottom Area -->
+            
+        </footer>
+        <!-- ##### Footer Area End ##### -->
+    
+<!-- ##### All Javascript Files ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="{%static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+<!-- Popper js -->
+<script src="{%static 'js/bootstrap/popper.min.js' %}"></script>
+<!-- Bootstrap js -->
+<script src="{%static 'js/bootstrap/bootstrap.min.js' %}"></script>
+<!-- All Plugins js -->
+<script src="{%static 'js/plugins/plugins.js' %}"></script>
+<!-- Active js -->
+<script src="{%static 'js/active.js' %}"></script>
+ <!-- Active js -->
+ <script src="{%static 'js/mycart.js' %}"></script>
+</body>
+
+</html>
