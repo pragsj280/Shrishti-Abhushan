@@ -26,7 +26,7 @@ SECRET_KEY = '#p_6zu_%eu7s%5v*iuyy(@qb3fybr(zdgh1w*!p%k58-bg^^@x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["shrishtiabhushan.herokuapp.com","127.0.0.1:8000"]
+ALLOWED_HOSTS = ["shrishtiabhushan.herokuapp.com","127.0.0.1"]
 
 
 # Application definition
@@ -84,11 +84,8 @@ WSGI_APPLICATION = 'nurserynation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'jwellery2',
-        'USER':'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
