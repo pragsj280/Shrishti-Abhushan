@@ -26,13 +26,13 @@ def signup(request):
         
         messages.info(request,'Account created Successfully!')    
         user.save()
-        send_mail(
-            'Welcome to Shrishti Abhushan!!!',
-            'Thanks for giving your time!',
-            'Shristisarvagya@gmail.com',
-            [email],
-            fail_silently=False,
-        )
+       # send_mail(
+        #    'Welcome to Shrishti Abhushan!!!',
+         #   'Thanks for giving your time!',
+          #  'Shristisarvagya@gmail.com',
+           # [email],
+            #fail_silently=False,
+       # )
             
         return render(request,'account/login.html')
     else:
